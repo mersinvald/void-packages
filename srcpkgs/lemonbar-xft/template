@@ -1,0 +1,21 @@
+pkgname=lemonbar-xft
+version=1.0
+revision=1
+wrksrc="bar-xft-port"
+build_style=gnu-makefile
+hostmakedepends="perl"
+makedepends="libxcb-devel libXft-devel"
+short_desc="A lightweight xcb based bar"
+homepage="https://github.com/krypt-n/bar"
+license="MIT"
+distfiles="https://github.com/krypt-n/bar/archive/xft-port.tar.gz"
+checksum=1feac0b06cea6aa15c34649815ae5d41d9f1a96d1aa84e7065700ecb2bfe00f3
+
+pre_build() {
+    sed -i 's/^\(CFLAGS *+=\)/override \1/' Makefile
+    sed -i 's/^\(LDFLAGS *+=\)/override \1/' Makefile
+}
+post_install() {
+    vlicense LICENSE
+}
+
